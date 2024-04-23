@@ -57,11 +57,18 @@ const sampleDataForPhotoList = [
   },
 ];
 
+const mappedSampleDataForPhotoList = sampleDataForPhotoList.map((photo) => {
+  return (
+    <div key={photo.id}>
+      <PhotoListItem data={photo} />
+    </div>
+  );
+});
 const PhotoList = () => {
   return (
-    <ul className="photo-list">
-      <PhotoListItem data={sampleDataForPhotoList} />
-    </ul>
+    <div className="photo-list">
+      {mappedSampleDataForPhotoList}
+    </div>
   );
 };
 
