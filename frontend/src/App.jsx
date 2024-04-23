@@ -1,9 +1,9 @@
 import React from "react";
 
 import "./App.scss";
-import PhotoList from "components/PhotoList";
-import TopNavigation from "components/TopNavigationBar";
 import HomeRoute from "routes/HomeRoute";
+import photos from '../src/mocks/photos'
+import topics from '../src/mocks/topics'
 
 
 // const photos = new Array(3).fill(null)
@@ -18,7 +18,7 @@ const App = () => {
   return (
     <div className="App">
       {/* {mappedPhotos} */}
-     <HomeRoute />
+     <HomeRoute photos={photos} topics={topics}/>
     </div>
   );
 };
