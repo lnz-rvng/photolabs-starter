@@ -9,8 +9,8 @@ const TopNavigation = (props) => {
   return (
     <div className="top-nav-bar">
       <span className="top-nav-bar__logo">PhotoLabs</span>
-      <TopicList topics={topics}/>
-      <FavBadge isFavPhotoExist={favoritedPhotos.length > 0}/>
+      <TopicList topics={topics} />
+      <FavBadge isFavPhotoExist={favoritedPhotos.length > 0} />
     </div>
   );
 };

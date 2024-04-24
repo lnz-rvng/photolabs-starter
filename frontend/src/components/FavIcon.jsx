@@ -27,7 +27,6 @@ const FavIcon = ({ displayAlert, selected = true, onClick }) => {
           stroke="#C80000"
           strokeWidth="0.5"
         />
-        
       )}
     </svg>
   );
