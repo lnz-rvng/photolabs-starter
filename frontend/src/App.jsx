@@ -1,24 +1,27 @@
-import React from "react";
+import React, { useState } from "react";
 
 import "./App.scss";
 import HomeRoute from "routes/HomeRoute";
-import photos from '../src/mocks/photos'
-import topics from '../src/mocks/topics'
+import photos from "../src/mocks/photos";
+import topics from "../src/mocks/topics";
+import PhotoDetailsModal from "routes/PhotoDetailsModal";
 
-
-// const photos = new Array(3).fill(null)
-
-// const mappedPhotos = photos.map((_, index) => {
-//   return (
-//     <PhotoListItem key={index} photo={sampleDataForPhotoListItem} />
-//   )
-// });
-// Note: Rendering a single component to build components in isolation
 const App = () => {
+  const [modal, setModal] = useState(false);
+  const toggleModal = () => {
+    setModal((prevModal) => !prevModal);
+  };
+
   return (
     <div className="App">
-      {/* {mappedPhotos} */}
-     <HomeRoute photos={photos} topics={topics}/>
+      <HomeRoute
+        photos={photos}
+        topics={topics}
+        modal={modal}
+        toggleModal={toggleModal}
+      />
+
+      {modal && <PhotoDetailsModal />}
     </div>
   );
 };
