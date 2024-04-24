@@ -4,27 +4,31 @@ import "../styles/PhotoListItem.scss";
 import PhotoFavButton from "./PhotoFavButton";
 
 const PhotoListItem = (props) => {
-  const { data, favoritedPhotos, setFavoritedPhotos } = props;
+  const { data, favoritedPhotos, setFavoritedPhotos, toggleModal } = props;
   const { id, location, urls, user } = data;
   const { city, country } = location;
   const { full, regular } = urls;
   const { username, name, profile } = user;
 
-  const isFavorited = favoritedPhotos.includes(id)
-  console.log(`isFavorited: ${isFavorited} favoritedPhotos: ${favoritedPhotos}`)
+  const isFavorited = favoritedPhotos.includes(id);
   const toggleFavorite = () => {
     if (!isFavorited) {
       // this will add the photo to the array
-      setFavoritedPhotos([...favoritedPhotos, id])
+      setFavoritedPhotos([...favoritedPhotos, id]);
     } else {
       // if a photo is already favorited, this code will remove it from the list/array
-      setFavoritedPhotos(favoritedPhotos.filter(photoId => photoId !== id));
+      setFavoritedPhotos(favoritedPhotos.filter((photoId) => photoId !== id));
     }
-  }
+  };
   return (
     <div key={id} className="photo-list__item">
-      <PhotoFavButton onClick={toggleFavorite} isFavorited={isFavorited}/>
-      <img className="photo-list__image" src={full} alt="display photo" />
+      <PhotoFavButton onClick={toggleFavorite} isFavorited={isFavorited} />
+      <img
+        className="photo-list__image"
+        src={full}
+        alt="display photo"
+        onClick={toggleModal}
+      />
       <div className="photo-list__user-details">
         <img
           className="photo-list__user-profile"
