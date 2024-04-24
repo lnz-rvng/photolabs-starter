@@ -21,7 +21,7 @@ const App = () => {
         toggleModal={toggleModal}
       />
 
-      {modal && <PhotoDetailsModal />}
+      {modal && <PhotoDetailsModal modal={modal} toggleModal={toggleModal} />}
     </div>
   );
 };
