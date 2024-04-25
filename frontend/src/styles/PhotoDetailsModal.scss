@@ -32,20 +32,18 @@
 .photo-details-modal__image {
   max-width: 95%;
   border-radius: 8px;
+  padding: 24px;
 }
 
 .photo-details-modal__top-bar {
-  display: flex;
-  flex-direction: row;
-  justify-content: space-between;
   margin: 16px;
   margin-top: 8px;
-  align-items: center;
 }
 
 .photo-details-modal__photographer-details {
   display: flex;
   font-size: 16px;
+  justify-content: flex-start;
 }
 
 .photo-details-modal__header {
@@ -54,6 +52,7 @@
   color: #1e1e1e;
   margin-top: 24px;
   margin-bottom: 24px;
+  margin-left: 24px;
   width: 90%;
 }
 
