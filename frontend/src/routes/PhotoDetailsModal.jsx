@@ -31,7 +31,7 @@ const PhotoDetailsModal = (props) => {
         <img src={closeSymbol} alt="close symbol" />
       </button>
 
-      <div className="photo-details-modal__top-bar">
+      <div className="photo-details-modal__images">
         <PhotoFavButton
           onClick={handleFavoriteClick}
           isFavorited={isFavorited}
