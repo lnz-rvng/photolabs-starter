@@ -30,7 +30,7 @@ const PhotoListItem = (props) => {
       <PhotoFavButton onClick={toggleFavorite} isFavorited={isFavorited} />
       <img
         className="photo-list__image"
-        src={full}
+        src={regular}
         alt="display photo"
         onClick={handlePhotoClick}
       />
