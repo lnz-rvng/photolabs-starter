@@ -4,7 +4,7 @@ import "../styles/PhotoListItem.scss";
 import PhotoFavButton from "./PhotoFavButton";
 
 const PhotoListItem = (props) => {
-  const { data, favoritedPhotos, setFavoritedPhotos, toggleModal } = props;
+  const { data, favoritedPhotos, setFavoritedPhotos, toggleModal, setSelectedPhoto } = props;
   const { id, location, urls, user } = data;
   const { city, country } = location;
   const { full, regular } = urls;
@@ -20,6 +20,11 @@ const PhotoListItem = (props) => {
       setFavoritedPhotos(favoritedPhotos.filter((photoId) => photoId !== id));
     }
   };
+
+  const handlePhotoClick = () => {
+    setSelectedPhoto(data)
+    toggleModal()
+  }
   return (
     <div key={id} className="photo-list__item">
       <PhotoFavButton onClick={toggleFavorite} isFavorited={isFavorited} />
@@ -27,7 +32,7 @@ const PhotoListItem = (props) => {
         className="photo-list__image"
         src={full}
         alt="display photo"
-        onClick={toggleModal}
+        onClick={handlePhotoClick}
       />
       <div className="photo-list__user-details">
         <img
