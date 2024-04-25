@@ -1,13 +1,26 @@
-import React from "react";
+import React, { useState } from "react";
 
 import "../styles/PhotoDetailsModal.scss";
 import closeSymbol from "../assets/closeSymbol.svg";
 import PhotoList from "components/PhotoList";
+import PhotoFavButton from "components/PhotoFavButton";
 
 const PhotoDetailsModal = (props) => {
   const { toggleModal, selectedPhoto, favoritedPhotos, setFavoritedPhotos } =
     props;
   const { id, location, similar_photos, urls, user } = selectedPhoto;
+
+  const [isFavorited, setIsFavorited] = useState(favoritedPhotos.includes(id));
+
+  const handleFavoriteClick = () => {
+    setIsFavorited(!isFavorited);
+
+    if (!favoritedPhotos.includes(id)) {
+      setFavoritedPhotos([...favoritedPhotos, id]);
+    } else {
+      setFavoritedPhotos(favoritedPhotos.filter(photoId => photoId !== id));
+    }
+  };
 
   return (
     <div className="photo-details-modal">
@@ -19,7 +32,7 @@ const PhotoDetailsModal = (props) => {
       </button>
 
       <div className="photo-details-modal__top-bar">
-
+      <PhotoFavButton onClick={handleFavoriteClick} isFavorited={isFavorited} />
         <img
           src={urls.full}
           alt="larger display photo"
