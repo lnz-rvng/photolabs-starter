@@ -6,21 +6,16 @@ import PhotoList from "components/PhotoList";
 import PhotoFavButton from "components/PhotoFavButton";
 
 const PhotoDetailsModal = (props) => {
-  const { toggleModal, selectedPhoto, favoritedPhotos, setFavoritedPhotos } =
-    props;
+  const {
+    toggleModal,
+    selectedPhoto,
+    favoritedPhotos,
+    setFavoritedPhotos,
+    toggleFavorite,
+  } = props;
+
   const { id, location, similar_photos, urls, user } = selectedPhoto;
-
-  const [isFavorited, setIsFavorited] = useState(favoritedPhotos.includes(id));
-
-  const handleFavoriteClick = () => {
-    setIsFavorited(!isFavorited);
-
-    if (!favoritedPhotos.includes(id)) {
-      setFavoritedPhotos([...favoritedPhotos, id]);
-    } else {
-      setFavoritedPhotos(favoritedPhotos.filter((photoId) => photoId !== id));
-    }
-  };
+  const isFavorited = favoritedPhotos.includes(id);
 
   return (
     <div className="photo-details-modal">
@@ -33,7 +28,9 @@ const PhotoDetailsModal = (props) => {
 
       <div className="photo-details-modal__images">
         <PhotoFavButton
-          onClick={handleFavoriteClick}
+          onClick={() => {
+            toggleFavorite(id, isFavorited);
+          }}
           isFavorited={isFavorited}
         />
         <img
@@ -69,6 +66,7 @@ const PhotoDetailsModal = (props) => {
             photos={Object.values(similar_photos)}
             favoritedPhotos={favoritedPhotos}
             setFavoritedPhotos={setFavoritedPhotos}
+            toggleFavorite={toggleFavorite}
           />
         </div>
       </div>

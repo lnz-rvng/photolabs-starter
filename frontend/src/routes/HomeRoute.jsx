@@ -3,8 +3,19 @@ import TopNavigation from "components/TopNavigationBar";
 import PhotoList from "components/PhotoList";
 import "../styles/HomeRoute.scss";
 function HomeRoute(props) {
-  const { photos, topics, toggleModal, setSelectedPhoto, favoritedPhotos, setFavoritedPhotos} = props;
-  
+  const {
+    photos,
+    topics,
+    toggleModal,
+    setSelectedPhoto,
+    favoritedPhotos,
+    setFavoritedPhotos,
+    handlePhotoClick,
+    handleFavoriteClick,
+    setIsFavorited,
+    toggleFavorite
+  } = props;
+
   return (
     <div className="home-route">
       <TopNavigation topics={topics} favoritedPhotos={favoritedPhotos} />
@@ -14,6 +25,10 @@ function HomeRoute(props) {
         setFavoritedPhotos={setFavoritedPhotos}
         toggleModal={toggleModal}
         setSelectedPhoto={setSelectedPhoto}
+        handlePhotoClick={handlePhotoClick}
+        handleFavoriteClick={handleFavoriteClick}
+        setIsFavorited={setIsFavorited}
+        toggleFavorite={toggleFavorite}
       />
     </div>
   );

@@ -5,14 +5,21 @@ import HomeRoute from "routes/HomeRoute";
 import photos from "../src/mocks/photos";
 import topics from "../src/mocks/topics";
 import PhotoDetailsModal from "routes/PhotoDetailsModal";
+import useApplicationData from "hooks/useApplicationData";
 
 const App = () => {
-  const [modal, setModal] = useState(false);
-  const [selectedPhoto, setSelectedPhoto] = useState(null);
-  const [favoritedPhotos, setFavoritedPhotos] = useState([]);
-  const toggleModal = () => {
-    setModal((prevModal) => !prevModal);
-  };
+  const {
+    toggleModal,
+    setSelectedPhoto,
+    setFavoritedPhotos,
+    selectedPhoto,
+    favoritedPhotos,
+    modal,
+    handleFavoriteClick,
+    handlePhotoClick,
+    setIsFavorited,
+    toggleFavorite,
+  } = useApplicationData();
 
   return (
     <div className="App">
@@ -24,6 +31,10 @@ const App = () => {
         setSelectedPhoto={setSelectedPhoto}
         favoritedPhotos={favoritedPhotos}
         setFavoritedPhotos={setFavoritedPhotos}
+        handlePhotoClick={handlePhotoClick}
+        handleFavoriteClick={handleFavoriteClick}
+        setIsFavorited={setIsFavorited}
+        toggleFavorite={toggleFavorite}
       />
 
       {modal && (
@@ -32,6 +43,8 @@ const App = () => {
           selectedPhoto={selectedPhoto}
           favoritedPhotos={favoritedPhotos}
           setFavoritedPhotos={setFavoritedPhotos}
+          handleFavoriteClick={handleFavoriteClick}
+          toggleFavorite={toggleFavorite}
         />
       )}
     </div>
