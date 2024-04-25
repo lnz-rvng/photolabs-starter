@@ -18,7 +18,7 @@ const PhotoDetailsModal = (props) => {
     if (!favoritedPhotos.includes(id)) {
       setFavoritedPhotos([...favoritedPhotos, id]);
     } else {
-      setFavoritedPhotos(favoritedPhotos.filter(photoId => photoId !== id));
+      setFavoritedPhotos(favoritedPhotos.filter((photoId) => photoId !== id));
     }
   };
 
@@ -32,7 +32,10 @@ const PhotoDetailsModal = (props) => {
       </button>
 
       <div className="photo-details-modal__top-bar">
-      <PhotoFavButton onClick={handleFavoriteClick} isFavorited={isFavorited} />
+        <PhotoFavButton
+          onClick={handleFavoriteClick}
+          isFavorited={isFavorited}
+        />
         <img
           src={urls.full}
           alt="larger display photo"
@@ -45,7 +48,7 @@ const PhotoDetailsModal = (props) => {
             src={user.profile}
             alt="profile picture"
           />
-          
+
           <div className="photo-details-modal__photographer-info">
             <span>{user.name}</span>
             <br />
@@ -57,7 +60,6 @@ const PhotoDetailsModal = (props) => {
       </div>
 
       <div>
-        
         <header className="photo-details-modal__header">
           <span>Similar Photos</span>
         </header>
@@ -69,7 +71,6 @@ const PhotoDetailsModal = (props) => {
             setFavoritedPhotos={setFavoritedPhotos}
           />
         </div>
-
       </div>
     </div>
   );
