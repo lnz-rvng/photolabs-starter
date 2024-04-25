@@ -11,8 +11,6 @@ function HomeRoute(props) {
     favoritedPhotos,
     setFavoritedPhotos,
     handlePhotoClick,
-    handleFavoriteClick,
-    setIsFavorited,
     toggleFavorite
   } = props;
 
@@ -26,8 +24,6 @@ function HomeRoute(props) {
         toggleModal={toggleModal}
         setSelectedPhoto={setSelectedPhoto}
         handlePhotoClick={handlePhotoClick}
-        handleFavoriteClick={handleFavoriteClick}
-        setIsFavorited={setIsFavorited}
         toggleFavorite={toggleFavorite}
       />
     </div>

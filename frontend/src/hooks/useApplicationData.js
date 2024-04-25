@@ -10,20 +10,9 @@ function useApplicationData() {
     user: undefined
   });
   const [favoritedPhotos, setFavoritedPhotos] = useState([]);
-  const [isFavorited, setIsFavorited] = useState([]);
 
   const toggleModal = () => {
     setModal((prevModal) => !prevModal);
-  };
-
-  const handleFavoriteClick = () => {
-    setIsFavorited(!isFavorited);
-
-    if (!favoritedPhotos.includes(id)) {
-      setFavoritedPhotos([...favoritedPhotos, id]);
-    } else {
-      setFavoritedPhotos(favoritedPhotos.filter((photoId) => photoId !== id));
-    }
   };
 
   const handlePhotoClick = (data) => {
@@ -48,9 +37,7 @@ function useApplicationData() {
     selectedPhoto,
     favoritedPhotos,
     modal,
-    handleFavoriteClick,
     handlePhotoClick,
-    setIsFavorited,
     toggleFavorite
   };
 }

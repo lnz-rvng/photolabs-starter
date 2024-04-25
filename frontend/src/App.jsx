@@ -26,14 +26,11 @@ const App = () => {
       <HomeRoute
         photos={photos}
         topics={topics}
-        modal={modal}
         toggleModal={toggleModal}
         setSelectedPhoto={setSelectedPhoto}
         favoritedPhotos={favoritedPhotos}
         setFavoritedPhotos={setFavoritedPhotos}
         handlePhotoClick={handlePhotoClick}
-        handleFavoriteClick={handleFavoriteClick}
-        setIsFavorited={setIsFavorited}
         toggleFavorite={toggleFavorite}
       />
 
@@ -43,7 +40,6 @@ const App = () => {
           selectedPhoto={selectedPhoto}
           favoritedPhotos={favoritedPhotos}
           setFavoritedPhotos={setFavoritedPhotos}
-          handleFavoriteClick={handleFavoriteClick}
           toggleFavorite={toggleFavorite}
         />
       )}

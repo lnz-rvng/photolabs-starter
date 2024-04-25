@@ -11,7 +11,6 @@ const PhotoList = (props) => {
     toggleModal,
     setSelectedPhoto,
     handlePhotoClick,
-    handleFavoriteClick,
     toggleFavorite
   } = props;
   const mappedPhotos = photos.map((photo) => {
@@ -24,7 +23,6 @@ const PhotoList = (props) => {
         toggleModal={toggleModal}
         setSelectedPhoto={setSelectedPhoto}
         handlePhotoClick={handlePhotoClick}
-        handleFavoriteClick={handleFavoriteClick}
         toggleFavorite={toggleFavorite}
       />
     );
