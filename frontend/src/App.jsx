@@ -8,6 +8,7 @@ import PhotoDetailsModal from "routes/PhotoDetailsModal";
 
 const App = () => {
   const [modal, setModal] = useState(false);
+  const [selectedPhoto, setSelectedPhoto] = useState(null)
   const toggleModal = () => {
     setModal((prevModal) => !prevModal);
   };
@@ -19,9 +20,10 @@ const App = () => {
         topics={topics}
         modal={modal}
         toggleModal={toggleModal}
+        setSelectedPhoto={setSelectedPhoto}
       />
 
-      {modal && <PhotoDetailsModal modal={modal} toggleModal={toggleModal} photos={photos}/>}
+      {modal && <PhotoDetailsModal modal={modal} toggleModal={toggleModal} selectedPhoto={selectedPhoto}/>}
     </div>
   );
 };
