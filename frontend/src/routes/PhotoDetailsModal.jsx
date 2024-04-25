@@ -5,15 +5,9 @@ import closeSymbol from "../assets/closeSymbol.svg";
 import PhotoList from "components/PhotoList";
 
 const PhotoDetailsModal = (props) => {
-  const { modal, toggleModal, photos } = props;
- 
-  const mappedPhotos = photos.map((photo) => {
-    const { id, location, urls, user } = photo;
-    const { city, country } = location;
-    const { full, regular } = urls;
-    const { username, name, profile } = user;
-    return <div key={id}>{console.log(photo)}</div>;
-  });
+  const { modal, toggleModal, selectedPhoto } = props;
+  const { id, location, similar_photo, urls, user } = selectedPhoto;
+
   return (
     <div className="photo-details-modal">
       <button
@@ -22,7 +16,7 @@ const PhotoDetailsModal = (props) => {
       >
         <img src={closeSymbol} alt="close symbol" />
       </button>
-      {mappedPhotos}
+      {console.log(selectedPhoto)}
     </div>
   );
 };
