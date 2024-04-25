@@ -161,23 +161,7 @@ const photo9 = {
   }
 }
 
-const photo10 = {
-  "id": "10",
-  "location": {
-    "city": "Edmonton",
-    "country": "Canada"
-  },
-  "urls": {
-    "full": `${process.env.PUBLIC_URL}/Image-10-Full.jpg`,
-    "regular": `${process.env.PUBLIC_URL}/Image-10-Regular.jpg`
-  },
-  "user": {
-    "id": "10",
-    "username": "exampleuser",
-    "name": "Joe Example",
-    "profile": `${process.env.PUBLIC_URL}/profile-1.jpg`
-  }
-}
+
 
 
 
@@ -257,15 +241,6 @@ const photos = [
   },
   {
     ...photo9,
-    similar_photos: {
-      photo2,
-      photo3,
-      photo4,
-      photo5,
-    }
-  },
-  {
-    ...photo10,
     similar_photos: {
       photo2,
       photo3,
