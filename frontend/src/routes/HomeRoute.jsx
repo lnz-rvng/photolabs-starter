@@ -3,7 +3,7 @@ import TopNavigation from "components/TopNavigationBar";
 import PhotoList from "components/PhotoList";
 import "../styles/HomeRoute.scss";
 function HomeRoute(props) {
-  const { photos, topics, toggleModal } = props;
+  const { photos, topics, toggleModal, setSelectedPhoto} = props;
   const [favoritedPhotos, setFavoritedPhotos] = useState([]);
   return (
     <div className="home-route">
@@ -13,6 +13,7 @@ function HomeRoute(props) {
         favoritedPhotos={favoritedPhotos}
         setFavoritedPhotos={setFavoritedPhotos}
         toggleModal={toggleModal}
+        setSelectedPhoto={setSelectedPhoto}
       />
     </div>
   );
