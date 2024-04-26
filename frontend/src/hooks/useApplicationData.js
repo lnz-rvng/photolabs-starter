@@ -2,13 +2,14 @@ import { useReducer } from "react";
 
 // Define action types
 export const ACTIONS = {
-  FAV_PHOTO_ADDED: 'FAV_PHOTO_ADDED',
-  FAV_PHOTO_REMOVED: 'FAV_PHOTO_REMOVED',
-  SET_PHOTO_DATA: 'SET_PHOTO_DATA',
-  SET_TOPIC_DATA: 'SET_TOPIC_DATA',
-  SELECT_PHOTO: 'SELECT_PHOTO',
-  DISPLAY_PHOTO_DETAILS: 'DISPLAY_PHOTO_DETAILS'
-}
+  FAV_PHOTO_ADDED: "FAV_PHOTO_ADDED",
+  FAV_PHOTO_REMOVED: "FAV_PHOTO_REMOVED",
+  SET_PHOTO_DATA: "SET_PHOTO_DATA",
+  SET_TOPIC_DATA: "SET_TOPIC_DATA",
+  SELECT_PHOTO: "SELECT_PHOTO",
+  DISPLAY_PHOTO_DETAILS: "DISPLAY_PHOTO_DETAILS",
+  CLOSE_PHOTO_DETAILS: "CLOSE_PHOTO_DETAILS",
+};
 
 // Reducer function to handle state transitions
 function reducer(state, action) {
@@ -16,25 +17,32 @@ function reducer(state, action) {
     case ACTIONS.FAV_PHOTO_ADDED:
       return {
         ...state,
-        favoritedPhotos: [...state.favoritedPhotos, action.payload.id]
+        favoritedPhotos: [...state.favoritedPhotos, action.payload.id],
       };
     case ACTIONS.FAV_PHOTO_REMOVED:
       return {
         ...state,
-        favoritedPhotos: state.favoritedPhotos.filter(photoId => photoId !== action.payload.id)
+        favoritedPhotos: state.favoritedPhotos.filter(
+          (photoId) => photoId !== action.payload.id
+        ),
       };
     case ACTIONS.SELECT_PHOTO:
       return {
         ...state,
-        selectedPhoto: action.payload.photo
+        selectedPhoto: action.payload.photo,
       };
     case ACTIONS.DISPLAY_PHOTO_DETAILS:
       return {
         ...state,
-        modal: true
+        modal: true,
+      };
+    case ACTIONS.CLOSE_PHOTO_DETAILS:
+      return {
+        ...state,
+        modal: false,
       };
     default:
-     return state;
+      return state;
   }
 }
 
@@ -46,9 +54,9 @@ function useApplicationData() {
       location: undefined,
       similar_photos: undefined,
       urls: undefined,
-      user: undefined
+      user: undefined,
     },
-    favoritedPhotos: []
+    favoritedPhotos: [],
   };
 
   // Initialize state using useReducer
@@ -58,6 +66,10 @@ function useApplicationData() {
     dispatch({ type: ACTIONS.DISPLAY_PHOTO_DETAILS });
   };
 
+  const closePhotoDetails = () => {
+    dispatch({ type: ACTIONS.CLOSE_PHOTO_DETAILS });
+  };
+  
   const handlePhotoClick = (data) => {
     dispatch({ type: ACTIONS.SELECT_PHOTO, payload: { photo: data } });
     toggleModal();
@@ -75,7 +87,8 @@ function useApplicationData() {
     toggleModal,
     handlePhotoClick,
     toggleFavorite,
-    ...state // Spread the state to expose the state values
+    closePhotoDetails,
+    ...state, // Spread the state to expose the state values
   };
 }
 
