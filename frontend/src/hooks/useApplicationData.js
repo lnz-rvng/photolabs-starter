@@ -1,6 +1,5 @@
 import { useReducer } from "react";
 
-// Define action types
 export const ACTIONS = {
   FAV_PHOTO_ADDED: "FAV_PHOTO_ADDED",
   FAV_PHOTO_REMOVED: "FAV_PHOTO_REMOVED",
@@ -11,7 +10,6 @@ export const ACTIONS = {
   CLOSE_PHOTO_DETAILS: "CLOSE_PHOTO_DETAILS",
 };
 
-// Reducer function to handle state transitions
 function reducer(state, action) {
   switch (action.type) {
     case ACTIONS.FAV_PHOTO_ADDED:
@@ -63,13 +61,13 @@ function useApplicationData() {
   const [state, dispatch] = useReducer(reducer, initialState);
 
   const toggleModal = () => {
-    dispatch({ type: ACTIONS.DISPLAY_PHOTO_DETAILS });
+    if(!state.modal) {
+      dispatch({ type: ACTIONS.DISPLAY_PHOTO_DETAILS });
+    } else {
+      dispatch({ type: ACTIONS.CLOSE_PHOTO_DETAILS });
+    }
   };
 
-  const closePhotoDetails = () => {
-    dispatch({ type: ACTIONS.CLOSE_PHOTO_DETAILS });
-  };
-  
   const handlePhotoClick = (data) => {
     dispatch({ type: ACTIONS.SELECT_PHOTO, payload: { photo: data } });
     toggleModal();
@@ -87,7 +85,6 @@ function useApplicationData() {
     toggleModal,
     handlePhotoClick,
     toggleFavorite,
-    closePhotoDetails,
     ...state, // Spread the state to expose the state values
   };
 }

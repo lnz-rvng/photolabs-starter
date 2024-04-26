@@ -12,7 +12,6 @@ const PhotoDetailsModal = (props) => {
     favoritedPhotos,
     setFavoritedPhotos,
     toggleFavorite,
-    closePhotoDetails
   } = props;
 
   const { id, location, similar_photos, urls, user } = selectedPhoto;
@@ -22,7 +21,7 @@ const PhotoDetailsModal = (props) => {
     <div className="photo-details-modal">
       <button
         className="photo-details-modal__close-button"
-        onClick={closePhotoDetails}
+        onClick={toggleModal}
       >
         <img src={closeSymbol} alt="close symbol" />
       </button>

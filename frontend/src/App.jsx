@@ -17,7 +17,6 @@ const App = () => {
     modal,
     handlePhotoClick,
     toggleFavorite,
-    closePhotoDetails
   } = useApplicationData();
 
   return (
@@ -40,7 +39,6 @@ const App = () => {
           favoritedPhotos={favoritedPhotos}
           setFavoritedPhotos={setFavoritedPhotos}
           toggleFavorite={toggleFavorite}
-          closePhotoDetails={closePhotoDetails}
         />
       )}
     </div>
