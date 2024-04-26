@@ -1,44 +1,81 @@
-import { useState } from "react";
+import { useReducer } from "react";
+
+// Define action types
+export const ACTIONS = {
+  FAV_PHOTO_ADDED: 'FAV_PHOTO_ADDED',
+  FAV_PHOTO_REMOVED: 'FAV_PHOTO_REMOVED',
+  SET_PHOTO_DATA: 'SET_PHOTO_DATA',
+  SET_TOPIC_DATA: 'SET_TOPIC_DATA',
+  SELECT_PHOTO: 'SELECT_PHOTO',
+  DISPLAY_PHOTO_DETAILS: 'DISPLAY_PHOTO_DETAILS'
+}
+
+// Reducer function to handle state transitions
+function reducer(state, action) {
+  switch (action.type) {
+    case ACTIONS.FAV_PHOTO_ADDED:
+      return {
+        ...state,
+        favoritedPhotos: [...state.favoritedPhotos, action.payload.id]
+      };
+    case ACTIONS.FAV_PHOTO_REMOVED:
+      return {
+        ...state,
+        favoritedPhotos: state.favoritedPhotos.filter(photoId => photoId !== action.payload.id)
+      };
+    case ACTIONS.SELECT_PHOTO:
+      return {
+        ...state,
+        selectedPhoto: action.payload.photo
+      };
+    case ACTIONS.DISPLAY_PHOTO_DETAILS:
+      return {
+        ...state,
+        modal: true
+      };
+    default:
+     return state;
+  }
+}
 
 function useApplicationData() {
-  const [modal, setModal] = useState(false);
-  const [selectedPhoto, setSelectedPhoto] = useState({
-    id: undefined,
-    location: undefined,
-    similar_photos: undefined,
-    urls: undefined,
-    user: undefined
-  });
-  const [favoritedPhotos, setFavoritedPhotos] = useState([]);
+  const initialState = {
+    modal: false,
+    selectedPhoto: {
+      id: undefined,
+      location: undefined,
+      similar_photos: undefined,
+      urls: undefined,
+      user: undefined
+    },
+    favoritedPhotos: []
+  };
+
+  // Initialize state using useReducer
+  const [state, dispatch] = useReducer(reducer, initialState);
 
   const toggleModal = () => {
-    setModal((prevModal) => !prevModal);
+    dispatch({ type: ACTIONS.DISPLAY_PHOTO_DETAILS });
   };
 
   const handlePhotoClick = (data) => {
-    setSelectedPhoto(data);
+    dispatch({ type: ACTIONS.SELECT_PHOTO, payload: { photo: data } });
     toggleModal();
   };
 
   const toggleFavorite = (id, isFavorited) => {
     if (!isFavorited) {
-      // this will add the photo to the array
-      setFavoritedPhotos([...favoritedPhotos, id]);
+      dispatch({ type: ACTIONS.FAV_PHOTO_ADDED, payload: { id } });
     } else {
-      // if a photo is already favorited, this code will remove it from the list/array
-      setFavoritedPhotos(favoritedPhotos.filter((photoId) => photoId !== id));
+      dispatch({ type: ACTIONS.FAV_PHOTO_REMOVED, payload: { id } });
     }
   };
 
   return {
     toggleModal,
-    setSelectedPhoto,
-    setFavoritedPhotos,
-    selectedPhoto,
-    favoritedPhotos,
-    modal,
     handlePhotoClick,
-    toggleFavorite
+    toggleFavorite,
+    ...state // Spread the state to expose the state values
   };
 }
 
