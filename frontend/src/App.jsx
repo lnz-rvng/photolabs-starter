@@ -17,6 +17,7 @@ const App = () => {
     toggleFavorite,
     photos,
     topics,
+    fetchPhotosByTopic
   } = useApplicationData();
 
   return (
@@ -30,6 +31,7 @@ const App = () => {
         toggleFavorite={toggleFavorite}
         photos={photos}
         topics={topics}
+        fetchPhotosByTopic={fetchPhotosByTopic}
       />
 
       {modal && (
