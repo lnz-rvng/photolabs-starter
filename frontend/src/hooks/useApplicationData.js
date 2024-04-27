@@ -8,6 +8,7 @@ export const ACTIONS = {
   SELECT_PHOTO: "SELECT_PHOTO",
   DISPLAY_PHOTO_DETAILS: "DISPLAY_PHOTO_DETAILS",
   CLOSE_PHOTO_DETAILS: "CLOSE_PHOTO_DETAILS",
+  GET_PHOTOS_BY_TOPIC: "GET_PHOTOS_BY_TOPIC",
 };
 
 function reducer(state, action) {
@@ -42,13 +43,18 @@ function reducer(state, action) {
     case ACTIONS.SET_PHOTO_DATA:
       return {
         ...state,
-        photos: action.payload
-      }
+        photos: action.payload,
+      };
     case ACTIONS.SET_TOPIC_DATA:
       return {
         ...state,
-        topics: action.payload
-      }
+        topics: action.payload,
+      };
+    case ACTIONS.GET_PHOTOS_BY_TOPIC:
+      return {
+        ...state,
+        photos: action.payload,
+      };
     default:
       return state;
   }
@@ -76,15 +82,26 @@ function useApplicationData() {
     fetch("http://localhost:8001/api/photos")
       .then((res) => res.json())
       .then((data) => dispatch({ type: ACTIONS.SET_PHOTO_DATA, payload: data }))
-      .catch(err => console.log(err))
+      .catch((err) => console.log(err));
   }, []);
 
   useEffect(() => {
     fetch("http://localhost:8001/api/topics")
       .then((res) => res.json())
       .then((data) => dispatch({ type: ACTIONS.SET_TOPIC_DATA, payload: data }))
-      .catch(err => console.log(err))
+      .catch((err) => console.log(err));
   }, []);
+
+  const fetchPhotosByTopic = (id) => {
+    fetch(`http://localhost:8001/api/topics/photos/${id}`)
+      .then((res) => res.json())
+      .then((data) => {
+        dispatch({ type: ACTIONS.GET_PHOTOS_BY_TOPIC, payload: data });
+      })
+      .catch((error) => {
+        console.error("Error fetching photos by topic:", error);
+      });
+  };
 
   const toggleModal = () => {
     if (!state.modal) {
@@ -111,6 +128,7 @@ function useApplicationData() {
     toggleModal,
     handlePhotoClick,
     toggleFavorite,
+    fetchPhotosByTopic,
     ...state, // Spread the state to expose the state values
   };
 }
