@@ -75,13 +75,15 @@ function useApplicationData() {
   useEffect(() => {
     fetch("http://localhost:8001/api/photos")
       .then((res) => res.json())
-      .then((data) => dispatch({ type: ACTIONS.SET_PHOTO_DATA, payload: data }));
+      .then((data) => dispatch({ type: ACTIONS.SET_PHOTO_DATA, payload: data }))
+      .catch(err => console.log(err))
   }, []);
 
   useEffect(() => {
     fetch("http://localhost:8001/api/topics")
       .then((res) => res.json())
-      .then((data) => dispatch({ type: ACTIONS.SET_TOPIC_DATA, payload: data }));
+      .then((data) => dispatch({ type: ACTIONS.SET_TOPIC_DATA, payload: data }))
+      .catch(err => console.log(err))
   }, []);
 
   const toggleModal = () => {
