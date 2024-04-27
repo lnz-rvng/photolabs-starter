@@ -1,4 +1,4 @@
-import { useReducer } from "react";
+import { useReducer, useEffect } from "react";
 
 export const ACTIONS = {
   FAV_PHOTO_ADDED: "FAV_PHOTO_ADDED",
@@ -55,13 +55,21 @@ function useApplicationData() {
       user: undefined,
     },
     favoritedPhotos: [],
+    photos: [],
+    topics: [],
   };
 
   // Initialize state using useReducer
   const [state, dispatch] = useReducer(reducer, initialState);
 
+  useEffect(() => {
+    fetch("http://localhost:8001/api/photos").then((res) => {
+      console.log(res);
+    });
+  }, []);
+
   const toggleModal = () => {
-    if(!state.modal) {
+    if (!state.modal) {
       dispatch({ type: ACTIONS.DISPLAY_PHOTO_DETAILS });
     } else {
       dispatch({ type: ACTIONS.CLOSE_PHOTO_DETAILS });
