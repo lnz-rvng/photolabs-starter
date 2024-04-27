@@ -39,6 +39,16 @@ function reducer(state, action) {
         ...state,
         modal: false,
       };
+    case ACTIONS.SET_PHOTO_DATA:
+      return {
+        ...state,
+        photos: action.payload
+      }
+    case ACTIONS.SET_TOPIC_DATA:
+      return {
+        ...state,
+        topics: action.payload
+      }
     default:
       return state;
   }
@@ -63,9 +73,15 @@ function useApplicationData() {
   const [state, dispatch] = useReducer(reducer, initialState);
 
   useEffect(() => {
-    fetch("http://localhost:8001/api/photos").then((res) => {
-      console.log(res);
-    });
+    fetch("http://localhost:8001/api/photos")
+      .then((res) => res.json())
+      .then((data) => dispatch({ type: ACTIONS.SET_PHOTO_DATA, payload: data }));
+  }, []);
+
+  useEffect(() => {
+    fetch("http://localhost:8001/api/topics")
+      .then((res) => res.json())
+      .then((data) => dispatch({ type: ACTIONS.SET_TOPIC_DATA, payload: data }));
   }, []);
 
   const toggleModal = () => {
