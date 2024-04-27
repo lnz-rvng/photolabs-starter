@@ -17,7 +17,7 @@ const App = () => {
     toggleFavorite,
     photos,
     topics,
-    fetchPhotosByTopic
+    fetchPhotosByTopic,
   } = useApplicationData();
 
   return (

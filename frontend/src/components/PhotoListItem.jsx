@@ -11,15 +11,22 @@ const PhotoListItem = (props) => {
   const { name, profile } = user;
 
   const isFavorited = favoritedPhotos.includes(id);
-  
+
   return (
     <div key={id} className="photo-list__item">
-      <PhotoFavButton onClick={() => {toggleFavorite(id, isFavorited)}} isFavorited={isFavorited} />
+      <PhotoFavButton
+        onClick={() => {
+          toggleFavorite(id, isFavorited);
+        }}
+        isFavorited={isFavorited}
+      />
       <img
         className="photo-list__image"
         src={regular}
         alt="display photo"
-        onClick={() => {handlePhotoClick(data)}}
+        onClick={() => {
+          handlePhotoClick(data);
+        }}
       />
       <div className="photo-list__user-details">
         <img

@@ -6,7 +6,13 @@ const TopicListItem = (props) => {
   const { title, fetchPhotosByTopic } = props;
   return (
     <div className="topic-list__item">
-      <span onClick={() => {fetchPhotosByTopic(props.id)}}>{title}</span>
+      <span
+        onClick={() => {
+          fetchPhotosByTopic(props.id);
+        }}
+      >
+        {title}
+      </span>
     </div>
   );
 };

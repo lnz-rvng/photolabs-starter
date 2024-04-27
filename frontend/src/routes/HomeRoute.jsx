@@ -12,12 +12,16 @@ function HomeRoute(props) {
     setFavoritedPhotos,
     handlePhotoClick,
     toggleFavorite,
-    fetchPhotosByTopic
+    fetchPhotosByTopic,
   } = props;
 
   return (
     <div className="home-route">
-      <TopNavigation topics={topics} favoritedPhotos={favoritedPhotos} fetchPhotosByTopic={fetchPhotosByTopic}/>
+      <TopNavigation
+        topics={topics}
+        favoritedPhotos={favoritedPhotos}
+        fetchPhotosByTopic={fetchPhotosByTopic}
+      />
       <PhotoList
         photos={photos}
         favoritedPhotos={favoritedPhotos}
