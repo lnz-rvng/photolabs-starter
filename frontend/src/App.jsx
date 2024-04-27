@@ -15,6 +15,8 @@ const App = () => {
     modal,
     handlePhotoClick,
     toggleFavorite,
+    photos,
+    topics,
   } = useApplicationData();
 
   return (
@@ -26,6 +28,8 @@ const App = () => {
         setFavoritedPhotos={setFavoritedPhotos}
         handlePhotoClick={handlePhotoClick}
         toggleFavorite={toggleFavorite}
+        photos={photos}
+        topics={topics}
       />
 
       {modal && (
