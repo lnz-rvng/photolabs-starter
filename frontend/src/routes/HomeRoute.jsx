@@ -13,6 +13,8 @@ function HomeRoute(props) {
     handlePhotoClick,
     toggleFavorite,
     fetchPhotosByTopic,
+    toggleDarkMode,
+    ...state
   } = props;
 
   return (
@@ -21,6 +23,8 @@ function HomeRoute(props) {
         topics={topics}
         favoritedPhotos={favoritedPhotos}
         fetchPhotosByTopic={fetchPhotosByTopic}
+        toggleDarkMode={toggleDarkMode}
+        state={state}
       />
       <PhotoList
         photos={photos}

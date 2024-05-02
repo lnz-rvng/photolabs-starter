@@ -12,13 +12,16 @@ const PhotoDetailsModal = (props) => {
     favoritedPhotos,
     setFavoritedPhotos,
     toggleFavorite,
+    toggleDarkMode,
+    ...state
   } = props;
 
   const { id, location, similar_photos, urls, user } = selectedPhoto;
-  const isFavorited = favoritedPhotos.includes(id);
+  const isFavorited = favoritedPhotos.includes(selectedPhoto);
+  const dark = (state.isDarkMode ? "dark" : '')
 
   return (
-    <div className="photo-details-modal">
+    <div className={`photo-details-modal ${dark}`}>
       <button
         className="photo-details-modal__close-button"
         onClick={toggleModal}
@@ -29,7 +32,7 @@ const PhotoDetailsModal = (props) => {
       <div className="photo-details-modal__images">
         <PhotoFavButton
           onClick={() => {
-            toggleFavorite(id, isFavorited);
+            toggleFavorite(selectedPhoto, isFavorited);
           }}
           isFavorited={isFavorited}
         />
@@ -67,6 +70,8 @@ const PhotoDetailsModal = (props) => {
             favoritedPhotos={favoritedPhotos}
             setFavoritedPhotos={setFavoritedPhotos}
             toggleFavorite={toggleFavorite}
+            state={state}
+            toggleDarkMode={toggleDarkMode}
           />
         </div>
       </div>

@@ -1,6 +1,10 @@
 import React from "react";
 
-const FavIcon = ({ displayAlert, selected = true, onClick }) => {
+const FavIcon = ({
+  displayAlert,
+  selected = true,
+  onClick,
+}) => {
   return (
     <svg
       width="20"

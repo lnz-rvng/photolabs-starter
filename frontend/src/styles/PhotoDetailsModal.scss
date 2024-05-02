@@ -11,8 +11,12 @@
   border-radius: 12px;
 }
 
+.dark {
+  background: rgb(51, 49, 49);
+  color: white;
+}
+
 .photo-details-modal__close-button {
-  background-color: white;
   border: none;
   color: white;
   text-align: center;
@@ -71,4 +75,8 @@
   font-weight: 700;
   font-size: 12px;
   margin-left: 8px;
+}
+
+.dark .photo-details-modal__header {
+  color: white;
 }

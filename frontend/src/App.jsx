@@ -18,10 +18,13 @@ const App = () => {
     photos,
     topics,
     fetchPhotosByTopic,
+    toggleDarkMode,
+    ...state
   } = useApplicationData();
 
+  const dark = (state.isDarkMode ? "dark" : '')
   return (
-    <div className="App">
+    <div className={`App ${dark}`}>
       <HomeRoute
         toggleModal={toggleModal}
         setSelectedPhoto={setSelectedPhoto}
@@ -32,6 +35,8 @@ const App = () => {
         photos={photos}
         topics={topics}
         fetchPhotosByTopic={fetchPhotosByTopic}
+        state={state}
+        toggleDarkMode={toggleDarkMode}
       />
 
       {modal && (
@@ -41,6 +46,8 @@ const App = () => {
           favoritedPhotos={favoritedPhotos}
           setFavoritedPhotos={setFavoritedPhotos}
           toggleFavorite={toggleFavorite}
+          state={state}
+          toggleDarkMode={toggleDarkMode}
         />
       )}
     </div>

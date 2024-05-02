@@ -18,3 +18,17 @@
   text-underline-position: auto;
   margin-left: 24px;
 }
+
+.icons {
+  display: flex;
+  flex-direction: row;
+}
+
+.dark-mode {
+  margin-top: -4px;
+  margin-left: 5px;
+}
+
+.dark .top-nav-bar__logo{
+  color: white;
+}

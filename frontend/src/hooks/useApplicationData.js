@@ -9,6 +9,8 @@ export const ACTIONS = {
   DISPLAY_PHOTO_DETAILS: "DISPLAY_PHOTO_DETAILS",
   CLOSE_PHOTO_DETAILS: "CLOSE_PHOTO_DETAILS",
   GET_PHOTOS_BY_TOPIC: "GET_PHOTOS_BY_TOPIC",
+  DARK_MODE_ON: "DARK_MODE_ON",
+  DARK_MODE_OFF: "DARK_MODE_OFF",
 };
 
 function reducer(state, action) {
@@ -16,13 +18,13 @@ function reducer(state, action) {
     case ACTIONS.FAV_PHOTO_ADDED:
       return {
         ...state,
-        favoritedPhotos: [...state.favoritedPhotos, action.payload.id],
+        favoritedPhotos: [...state.favoritedPhotos, action.payload],
       };
     case ACTIONS.FAV_PHOTO_REMOVED:
       return {
         ...state,
         favoritedPhotos: state.favoritedPhotos.filter(
-          (photoId) => photoId !== action.payload.id
+          (photoData) => photoData!== action.payload
         ),
       };
     case ACTIONS.SELECT_PHOTO:
@@ -55,6 +57,17 @@ function reducer(state, action) {
         ...state,
         photos: action.payload,
       };
+    case ACTIONS.DARK_MODE_ON:
+      return {
+        ...state,
+        isDarkMode: true,
+      };
+    case ACTIONS.DARK_MODE_OFF:
+      return {
+        ...state,
+        isDarkMode: false,
+      };
+
     default:
       return state;
   }
@@ -63,6 +76,7 @@ function reducer(state, action) {
 function useApplicationData() {
   const initialState = {
     modal: false,
+    isDarkMode: false,
     selectedPhoto: {
       id: undefined,
       location: undefined,
@@ -116,11 +130,19 @@ function useApplicationData() {
     toggleModal();
   };
 
-  const toggleFavorite = (id, isFavorited) => {
+  const toggleFavorite = (data, isFavorited) => {
     if (!isFavorited) {
-      dispatch({ type: ACTIONS.FAV_PHOTO_ADDED, payload: { id } });
+      dispatch({ type: ACTIONS.FAV_PHOTO_ADDED, payload:  data  });
     } else {
-      dispatch({ type: ACTIONS.FAV_PHOTO_REMOVED, payload: { id } });
+      dispatch({ type: ACTIONS.FAV_PHOTO_REMOVED, payload: data  });
+    }
+  };
+
+  const toggleDarkMode = () => {
+    if (!state.isDarkMode) {
+      dispatch({ type: ACTIONS.DARK_MODE_ON });
+    } else {
+      dispatch({ type: ACTIONS.DARK_MODE_OFF });
     }
   };
 
@@ -129,6 +151,7 @@ function useApplicationData() {
     handlePhotoClick,
     toggleFavorite,
     fetchPhotosByTopic,
+    toggleDarkMode,
     ...state, // Spread the state to expose the state values
   };
 }

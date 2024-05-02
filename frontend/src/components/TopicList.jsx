@@ -4,7 +4,7 @@ import "../styles/TopicList.scss";
 import TopicListItem from "./TopicListItem";
 
 const TopicList = (props) => {
-  const { topics, fetchPhotosByTopic } = props;
+  const { topics, fetchPhotosByTopic, ...state } = props;
   const mappedTopics = topics.map((topic) => {
     return (
       <TopicListItem
@@ -12,11 +12,12 @@ const TopicList = (props) => {
         title={topic.title}
         fetchPhotosByTopic={fetchPhotosByTopic}
         id={topic.id}
+        state={state}
       />
     );
   });
-
-  return <div className="top-nav-bar__topic-list">{mappedTopics}</div>;
+  const dark = (state.isDarkMode ? "dark" : '')
+  return <div className={`top-nav-bar__topic-list ${dark}`}>{mappedTopics}</div>;
 };
 
 export default TopicList;
