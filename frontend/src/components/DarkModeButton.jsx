@@ -3,7 +3,7 @@ import React from "react";
 import "../styles/DarkModeButton.scss";
 
 function DarkModeButton(props) {
-  const { toggleDarkMode, ...state } = props;
+  const { toggleDarkMode, state } = props;
   return (
     <div>
       <button onClick={toggleDarkMode}>

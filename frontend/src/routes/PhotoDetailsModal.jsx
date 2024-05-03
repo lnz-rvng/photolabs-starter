@@ -13,7 +13,7 @@ const PhotoDetailsModal = (props) => {
     setFavoritedPhotos,
     toggleFavorite,
     toggleDarkMode,
-    ...state
+    state
   } = props;
 
   const { id, location, similar_photos, urls, user } = selectedPhoto;

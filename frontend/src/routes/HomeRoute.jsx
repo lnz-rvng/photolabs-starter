@@ -14,7 +14,7 @@ function HomeRoute(props) {
     toggleFavorite,
     fetchPhotosByTopic,
     toggleDarkMode,
-    ...state
+    state
   } = props;
 
   return (

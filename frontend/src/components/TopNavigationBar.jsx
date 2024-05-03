@@ -6,7 +6,7 @@ import FavBadge from "./FavBadge";
 import DarkModeButton from "./DarkModeButton";
 
 const TopNavigation = (props) => {
-  const { topics, favoritedPhotos, fetchPhotosByTopic, toggleDarkMode, ...state } =
+  const { topics, favoritedPhotos, fetchPhotosByTopic, toggleDarkMode, state } =
     props;
   const dark = state.isDarkMode ? "dark" : "";
   return (

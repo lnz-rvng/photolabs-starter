@@ -4,7 +4,7 @@ import "../styles/TopicList.scss";
 import TopicListItem from "./TopicListItem";
 
 const TopicList = (props) => {
-  const { topics, fetchPhotosByTopic, ...state } = props;
+  const { topics, fetchPhotosByTopic, state } = props;
   const mappedTopics = topics.map((topic) => {
     return (
       <TopicListItem
